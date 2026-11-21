@@ -41,3 +41,26 @@ npm test
 
 ## Napomene
 Udaljenost između lokacija računa se euklidski i zaokružuje na jednu decimalu po dionici.
+
+## Deployment
+Aplikacija se može implementirati na Netlify za frontend i Heroku za backend.
+
+### Netlify
+1. Povežite svoj Git repozitorij s Netlify-jem.
+2. Postavite osnovne postavke, uključujući varijable okruženja.
+3. Odaberite granu za implementaciju (npr. `main`).
+4. Konfigurirajte build naredbu: `npm run build`.
+5. Postavite objavljeni direktorij na `client/dist`.
+
+### Heroku
+1. Instalirajte Heroku CLI i prijavite se.
+2. Kreirajte novu Heroku aplikaciju: `heroku create`.
+3. Postavite varijable okruženja: `heroku config:set KEY=VALUE`.
+4. Implementirajte aplikaciju: `git push heroku main`.
+5. Pokrenite migracije ako ih ima: `heroku run npm run migrate`.
+
+## GitHub Workflow
+- Koristite grane za nove značajke ili ispravke.
+- Otvorite Pull Request za spajanje u `main` granu.
+- Osigurajte da svi testovi prolaze prije spajanja.
+- Nakon spajanja, povucite promjene u lokalni repozitorij.

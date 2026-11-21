@@ -61,7 +61,7 @@ type Result = {
   algorithm: string;
   valid: boolean;
 };
-const API = "http://localhost:4000";
+const API = import.meta.env.DEV ? "http://localhost:4000" : "";
 const fmt = (n: number) =>
   new Intl.NumberFormat("hr-HR", { maximumFractionDigits: 1 }).format(n);
 const mins = (n: number) => `${Math.floor(n / 60)}h ${Math.round(n % 60)}m`;
