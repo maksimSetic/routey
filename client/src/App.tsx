@@ -1265,6 +1265,34 @@ function RouteMap({
           </button>
         </div>
       </div>
+      <div className="weight-tracker">
+        <div className="weight-tracker-icon">
+          <Weight size={15} />
+        </div>
+        <div className="weight-tracker-copy">
+          <span>{tr.currentWeight}</span>
+          <b>{fmt(stop?.loadAfter ?? 0)} kg</b>
+        </div>
+        <div className="weight-tracker-bar">
+          <i
+            style={{
+              width: `${
+                active?.vehicle.capacity
+                  ? Math.min(
+                      100,
+                      ((stop?.loadAfter ?? 0) / active.vehicle.capacity) * 100,
+                    )
+                  : 0
+              }%`,
+            }}
+          />
+        </div>
+        <small>
+          {active?.vehicle.capacity
+            ? `${Math.round(((stop?.loadAfter ?? 0) / active.vehicle.capacity) * 100)}% / ${fmt(active.vehicle.capacity)} kg`
+            : "0 kg"}
+        </small>
+      </div>
     </div>
   );
 }
@@ -1372,24 +1400,25 @@ const enTranslations = {
   pass: "PROŠLO",
   pending: "ČEKANJE",
   runValidation: "Pokreni provjeru optimizacijom",
-  liveNavigation: "LIVE NAVIGATION",
-  clearRoute: "Clear route",
+  liveNavigation: "NAVIGACIJA uživo",
+  currentWeight: "TRENUTNA TEŽINA",
+  clearRoute: "Čista ruta",
   eta: "ETA",
-  nextManeuver: "NEXT MANEVAR",
-  then: "THEN",
+  nextManeuver: "SLJEDEĆI MANEVAR",
+  then: "ZATIM",
   pickup: "Preuzmi",
   deliver: "Isporuči",
   returnBase: "Povratak u bazu · L0",
   routeComplete: "Ruta je dovršena",
   headToward: "Krenite prema",
-  pickUpAction: "PICK UP",
-  deliverAction: "DELIVER",
-  start: "START",
+  pickUpAction: "PREUZIMANJE",
+  deliverAction: "ISPORUKA",
+  start: "POČETAK",
   atBase: "U bazi",
   navigating: "NAVIGACIJA",
   arrived: "STIGLI",
   routeProgress: "NAPREDAK RUTE",
-  restart: "Ponovno pokreni",
+  restart: "Pokreni ponovno",
   pause: "Pauziraj",
   startNavigation: "Pokreni navigaciju",
   speed: "Promijeni brzinu reprodukcije",
@@ -1400,7 +1429,7 @@ const enTranslations = {
   allSystemsNormal: "Svi sustavi rade normalno",
   totalKm: "UKUPNO KM",
   awaitingRun: "ČEKANJE POKRETANJA",
-  engineReady: "Engine ready",
+  engineReady: "Motor spreman",
 };
 const hrTranslations = {
   ...enTranslations,
@@ -1457,11 +1486,15 @@ const hrTranslations = {
   clearRoute: "Čista ruta",
   nextManeuver: "SLJEDEĆI MANEVAR",
   then: "ZATIM",
+  pickup: "Preuzmi",
+  deliver: "Isporuči",
+  returnBase: "Povratak u bazu · L0",
   routeComplete: "Ruta je dovršena",
   headToward: "Krenite prema",
   pickUpAction: "PREUZIMANJE",
   deliverAction: "ISPORUKA",
   start: "POČETAK",
+  atBase: "U bazi",
   navigating: "NAVIGACIJA",
   arrived: "STIGLI",
   routeProgress: "NAPREDAK RUTE",
@@ -1469,9 +1502,12 @@ const hrTranslations = {
   pause: "Pauziraj",
   startNavigation: "Pokreni navigaciju",
   speed: "Promijeni brzinu reprodukcije",
+  interactiveMap: "Interaktivna karta transportne rute uživo",
+  atLocation: "u",
   truck: "Kamion",
   smartPlanner: "PAMETNI PLANER LOGISTIKE",
   allSystemsNormal: "Svi sustavi rade normalno",
+  currentWeight: "TRENUTNA TEŽINA",
 };
 const translations = {
   en: enTranslations,
