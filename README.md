@@ -3,11 +3,13 @@
 Modern demo aplikacija za planiranje prijevoza radnih strojeva.
 
 ## Stack
+
 - Frontend: React, TypeScript, Vite, Framer Motion, Lucide
 - Backend: Node.js, Express, TypeScript
 - Tests: Vitest
 
 ## Pokretanje
+
 Preduvjet: Node.js 20+.
 
 ```bash
@@ -21,11 +23,13 @@ Frontend: http://localhost:5173
 Backend: http://localhost:4000/api/health
 
 ## Testovi
+
 ```bash
 npm test
 ```
 
 ## Optimizacijska logika
+
 - Strojevi teži od 3.500 kg obavezno se dodjeljuju kamionu B.
 - Za preostalih pet naloga enumerira se svih 2^5 = 32 mogućih raspodjela.
 - Za svako vozilo beam search slaže pickup/delivery događaje uz provjeru nosivosti, broja istodobno prevezenih strojeva, redoslijeda pickup-before-delivery i radnog vremena.
@@ -35,17 +39,21 @@ npm test
 **Važno:** Beam search je heuristička metoda. Ovo je kvalitetan prototip i ne predstavlja matematički dokaz globalnog optimuma. U prezentaciji treba jasno navesti da se radi o heurističkoj optimizaciji. Povećanje širine snopa i dodatni lokalni search mogu poboljšati rezultat.
 
 ## API
+
 - `GET /api/health`
 - `GET /api/data`
 - `POST /api/optimize`
 
 ## Napomene
+
 Udaljenost između lokacija računa se euklidski i zaokružuje na jednu decimalu po dionici.
 
 ## Deployment
+
 Aplikacija se može implementirati na Netlify za frontend i Heroku za backend.
 
 ### Netlify
+
 1. Povežite svoj Git repozitorij s Netlify-jem.
 2. Postavite osnovne postavke, uključujući varijable okruženja.
 3. Odaberite granu za implementaciju (npr. `main`).
@@ -53,6 +61,7 @@ Aplikacija se može implementirati na Netlify za frontend i Heroku za backend.
 5. Postavite objavljeni direktorij na `client/dist`.
 
 ### Heroku
+
 1. Instalirajte Heroku CLI i prijavite se.
 2. Kreirajte novu Heroku aplikaciju: `heroku create`.
 3. Postavite varijable okruženja: `heroku config:set KEY=VALUE`.
@@ -60,6 +69,7 @@ Aplikacija se može implementirati na Netlify za frontend i Heroku za backend.
 5. Pokrenite migracije ako ih ima: `heroku run npm run migrate`.
 
 ## GitHub Workflow
+
 - Koristite grane za nove značajke ili ispravke.
 - Otvorite Pull Request za spajanje u `main` granu.
 - Osigurajte da svi testovi prolaze prije spajanja.

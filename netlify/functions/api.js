@@ -8,11 +8,12 @@ const jsonHeaders = {
 };
 
 function getApiResponse(method, path) {
-  const normalizedPath = path
-    .replace(/^https?:\/\/[^/]+/, "")
-    .replace(/^\/\.netlify\/functions\/api/, "")
-    .replace(/^\/api/, "")
-    .replace(/\/+$/, "") || "/";
+  const normalizedPath =
+    path
+      .replace(/^https?:\/\/[^/]+/, "")
+      .replace(/^\/\.netlify\/functions\/api/, "")
+      .replace(/^\/api/, "")
+      .replace(/\/+$/, "") || "/";
 
   if (method === "OPTIONS") {
     return { status: 204, body: "" };
@@ -23,7 +24,10 @@ function getApiResponse(method, path) {
   }
 
   if (normalizedPath === "/data" && method === "GET") {
-    return { status: 200, body: JSON.stringify({ locations, orders, vehicles }) };
+    return {
+      status: 200,
+      body: JSON.stringify({ locations, orders, vehicles }),
+    };
   }
 
   if (normalizedPath === "/optimize" && method === "POST") {
@@ -50,10 +54,7 @@ function getApiResponse(method, path) {
 
 // Netlify Functions v1 / AWS-style handler.
 export const handler = async (event) => {
-  const response = getApiResponse(
-    event.httpMethod || "GET",
-    event.path || "/",
-  );
+  const response = getApiResponse(event.httpMethod || "GET", event.path || "/");
 
   return {
     statusCode: response.status,
