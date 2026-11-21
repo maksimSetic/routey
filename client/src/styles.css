@@ -1119,6 +1119,7 @@ footer span:last-child {
   .app-shell {
     min-width: 320px;
   }
+
   .sidebar {
     width: 62px;
     padding: 16px 8px;
@@ -1282,6 +1283,11 @@ footer span:last-child {
   }
   .nav-card {
     width: 172px;
+    display: flex;
+  }
+  .weight-tracker {
+    display: none;
+    visibility: hidden;
   }
   .nav-maneuver-copy b {
     font-size: 14px;
