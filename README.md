@@ -48,6 +48,31 @@ npm test
 
 Udaljenost između lokacija računa se euklidski i zaokružuje na jednu decimalu po dionici.
 
+## Razlika u broju stanica i radnom vremenu kamiona
+
+Kamion B nije namjerno opterećen više od kamiona A. Razlika proizlazi iz ulaznih ograničenja i cilja optimizacije:
+
+- Strojevi M06–M10 teže su od 3.500 kg, pa se moraju dodijeliti kamionu B.
+- Kamion A može prevoziti strojeve do 3.500 kg, najviše dva istodobno, dok kamion B ima nosivost 10.000 kg i može istovremeno prevoziti najviše tri stroja.
+- Lakši strojevi M01–M05 mogu biti dodijeljeni kamionu A ili kamionu B prema mogućem rasporedu koji daje najmanju ukupnu kilometražu.
+- Svaki nalog ima dvije radnje — preuzimanje i isporuku — pa se svaka radnja prikazuje kao zasebna stanica.
+
+Radno vrijeme kamiona izračunava se kao:
+
+$$
+\text{radno vrijeme}=\text{prijeđena udaljenost u km}+20\times\text{broj radnji}
+$$
+
+pri čemu 60 km/h znači jedan minut vožnje po kilometru, a svako utovarivanje ili istovarivanje traje 20 minuta. Kamion B stoga može imati više stanica i veće radno vrijeme jer preuzima obvezne teške strojeve i završava njihov prijevoz. Kamion A ne mora imati jednako mnogo stanica niti jednako radno vrijeme.
+
+Cilj optimizacije nije izjednačiti broj stanica ili radno vrijeme kamiona, nego minimizirati zbroj njihove ukupne kilometraže:
+
+$$
+D_{ukupno}=D_A+D_B
+$$
+
+uz poštivanje nosivosti, maksimalnog broja strojeva, redoslijeda pickup-before-delivery i 9-satnog radnog ograničenja.
+
 ## Deployment
 
 Aplikacija se može implementirati na Netlify za frontend i Heroku za backend.
